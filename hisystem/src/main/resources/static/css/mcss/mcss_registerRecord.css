@@ -1,0 +1,32 @@
+.register_search {
+    font-size: 18px;
+    margin-left: 7%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: flex;
+}
+
+.search_time {
+    margin-left: 2%;
+}
+
+.search_time input {
+    width: 130px;
+    text-align: center;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid #56A9BA;
+}
+
+.registerRecord-search {
+    margin-left: 2%;
+}
+
+.registerSearch_1 {
+    width: 180px;
+}
+
+.registerSearch_2 {
+    width: 140px;
+}

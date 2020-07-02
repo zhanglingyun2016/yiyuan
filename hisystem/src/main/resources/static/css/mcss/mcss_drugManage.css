@@ -1,0 +1,14 @@
+
+input {
+    text-align: center;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid #56A9BA;
+    margin-left: 1%;
+    color: #000080;
+}
+
+.drug_search {
+    display: flex;
+}

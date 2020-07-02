@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="common/common_css :: css(~{::link})">
+    </head>
+    <title>入库管理</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/mcss/mcss_storageManage.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chosen.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/preloader.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/flatpickr.min.css}"/>
+</head>
+<body>
+
+<div id="preloader">
+    <div id="preloader-inner"></div>
+</div>
+<div id="wrapper">
+    <div th:replace="common/common_left :: left"></div>
+
+    <div id="content-wrapper" class="d-flex flex-column content-wrapper">
+        <div id="content">
+            <div th:replace="common/common_head :: head"></div>
+
+            <!--正文-->
+            <div>
+                <div class="card shadow mb-4" style="margin-left: 2.5%;height: 580px;">
+
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">入库管理</h6>
+                    </div>
+
+                    <div style="display: flex">
+                        <div class="card-body" style="width: 60%">
+                            <div style=" margin-left: 6%">
+
+                                <div style="width: 40%;">
+                                    <ul class="nav nav-pills " role="tablist">
+                                        <li class="nav-item" style="text-align: center">
+                                            <a class="nav-link active" data-toggle="pill" href="#drugStorage">药品入库</a>
+                                        </li>
+                                        <li class="nav-item" style="text-align: center">
+                                            <a class="nav-link" data-toggle="pill" href="#newDrugs">新增药品</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="tab-content addNewDrug">
+                                    <div id="drugStorage" class=" tab-pane active"><br>
+                                        <div style="display: flex;margin: 10px 0 20px 0">
+                                            <div>
+                                                药品名:
+                                            </div>
+                                            <div style="margin-left: 10px">
+                                                <select class='drugSelect' data-placeholder=' '>
+                                                    <option value=""></option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        剂型<input type="text" id="drugInfo_type" readonly="readonly"
+                                                 style="width: 120px">&emsp;
+                                        功效<input type="text" id="drugInfo_efficacyClassification" readonly="readonly"
+                                                 style="width: 150px">&emsp;
+                                        制剂规格<input type="text" id="drugInfo_specification" readonly="readonly"
+                                                   style="width: 152px">&emsp;&emsp;&emsp;
+                                        <br>
+                                        <br>
+                                        生产厂家<input type="text" id="drugInfo_manufacturer" readonly="readonly"
+                                                   style="width: 348px">&emsp;
+                                        现库存量<input type="text" id="drugInfo_storageQuantity" readonly="readonly"
+                                                   style="width: 100px">
+                                        <br>
+                                        <br>
+                                        请输入入库量<input type="text" id="add_StorageQuantity" style="width: 100px">
+                                        <br>
+                                        <button type="button" class="btn btn-primary" style="margin: -32px 0 0 445px;"
+                                                onclick="addStorageQuantity()">新增
+                                        </button>
+                                    </div>
+
+                                    <div id="newDrugs" class=" tab-pane fade"><br>
+
+                                        <div style="display: flex ; margin-bottom: 30px">
+                                            药品名<input type="text" id="name" style="width: 170px">
+
+                                            <div style="display: flex;margin-left: 70px">
+
+                                                <div>
+                                                    剂型
+                                                </div>
+
+                                                <div style="margin-left: 10px">
+                                                    <select class='drugTypeSelect' data-placeholder=' '>
+                                                        <option value=""></option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        制剂规格<input type="text" id="specification" style="width: 152px">&emsp;&emsp;&emsp;
+                                        制剂单位<input type="text" id="unit" style="width: 100px">
+
+                                        <div style="display: flex;margin-top: 30px">
+
+                                            <div style="display: flex">
+                                                <div>
+                                                    是否限制药
+                                                </div>
+                                                <div style="margin-left: 10px">
+                                                    <select class='limitStatusSelect' data-placeholder=' '>
+                                                        <option value=""></option>
+                                                        <option value="1">是</option>
+                                                        <option value="0">否</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div style="display: flex;margin-left: 20px">
+                                                <div>
+                                                    功效分类
+                                                </div>
+                                                <div style="margin-left: 10px">
+                                                    <select class='efficacyClassificationSelect' data-placeholder=' '>
+                                                        <option value=""></option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div style="display: flex;margin-top:30px">
+                                            <div style="width: 160px">
+                                                批发价<input type="text" id="wholesalePrice" style="width: 80px">
+                                            </div>
+                                            <div style="width: 160px;">
+                                                售价<input type="text" id="price" style="width:80px">
+                                            </div>
+                                            <div style="width: 160px;">
+                                                入库量<input type="text" id="storageQuantity" style="width:90px">
+                                            </div>
+                                        </div>
+
+                                        <div style="display: flex;margin-top:30px">
+                                            <div style="display: flex;width: 245px">
+                                                <div> 生产日期</div>
+                                                <input class="productionDate" style="width: 145px;height: 33px">
+                                            </div>
+                                            <div style="display: flex;width: 255px">
+                                                <div> 保质日期</div>
+                                                <input class="qualityDate" style="width:145px;height: 33px">
+                                            </div>
+
+                                        </div>
+
+                                        <div style="margin-top: 30px;margin-bottom: 30px">
+                                            生成厂家<input type="text" id="manufacturer" style="width:380px">
+                                        </div>
+                                        <button type="button" class="btn btn-primary" style="margin-left: 400px;"
+                                                onclick="addNewDrug()">新增
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="card-body" style="width: 40%">
+
+                            <div style="width: 40%;">
+                                <ul class="nav nav-pills " role="tablist">
+                                    <li class="nav-item" style="text-align: center">
+                                        <a class="nav-link active" data-toggle="pill" href="#addDrugType">新增剂型</a>
+                                    </li>
+                                    <li class="nav-item" style="text-align: center">
+                                        <a class="nav-link" data-toggle="pill"
+                                           href="#addEfficacyClassification">新增功效</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="tab-content addNewDrug">
+                                <div id="addDrugType" class=" tab-pane active" style="margin: 30px 0 0 10px"><br>
+                                    请输入剂型<input type="text" id="add_drug_type" style="width: 150px">
+                                    <button type="button" style="margin-left: 50px" class="btn btn-primary mybutton"
+                                            onclick="addDrugType()">新增
+                                    </button>
+                                </div>
+                                <div id="addEfficacyClassification" class=" tab-pane fade"
+                                     style="margin: 30px 0 0 10px"><br>
+
+                                    请输入功效<input type="text" id="add_efficacyClassification" style="width: 150px">
+                                    <button type="button" style="margin-left: 50px" class="btn btn-primary mybutton"
+                                            onclick="addEfficacyClassification()">新增
+                                    </button>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div>
+    <div th:replace="common/common_js :: js(~{::script})"></div>
+    <script type="text/javascript" th:src="@{/js/jquery.preloader.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/chosen.jquery.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table-zh-CN.js}"></script>
+    <script type="text/javascript" th:src="@{/js/flatpickr.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/mjs/mjs_storageManage.js}"></script>
+</div>
+</body>
+</html>

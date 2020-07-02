@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="common/common_css :: css(~{::link})">
+    </head>
+    <title>体检</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/mcss/mcss_medicalExamination.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/mcss/mcss_notice.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/preloader.css}">
+</head>
+<body>
+
+<div id="preloader">
+    <div id="preloader-inner"></div>
+</div>
+<div id="wrapper">
+    <div th:replace="common/common_left :: left"></div>
+
+    <div id="content-wrapper" class="d-flex flex-column content-wrapper">
+        <div id="content">
+            <div th:replace="common/common_head :: head"></div>
+
+            <!--正文-->
+            <div>
+                <div class="card shadow mb-4" style="margin-left: 2.5%;height: 818px;">
+
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">普通体检</h6>
+                    </div>
+
+                    <div class="card-body">
+                        <div style=" margin-left: 1%;margin-right: 1%">
+
+                            <div class="card mycard">
+
+                                <div style="margin-left: 5%">
+                                    <div class="textbox">
+                                        卡号<input type="text" style="width: 140px" id="cardId">
+                                        <div class="cardId-search">
+                                            <button class="btn btn-success" onclick="getCardIdInfor(1)">
+                                                <img class="png" th:src="@{/images/icon/search.png}">
+                                            </button>
+                                        </div>
+                                        <div class="mybtn1">
+                                            <button class="btn btn-info" onclick="getCardIdInfor(0)">读取就诊卡</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="textbox_2">
+
+                                    姓名<input type="text" id="name" style="width: 120px" readonly="readonly">&emsp;
+                                    性别<input type="text" id="sex" style="width: 90px" readonly="readonly">&emsp;
+                                    民族<input type="text" id="nationality" style="width: 90px" readonly="readonly">&emsp;
+                                    年龄<input type="text" id="age" style="width:100px" readonly="readonly">
+                                    <input type="text" id="queueId" hidden="hidden"><!--隐藏队列Id-->
+
+                                </div>
+
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">检查结果</h6>
+                                </div>
+
+                                <div class="textbox_2">
+                                    体温<input type="text" id="bodyTemperature" style="width: 70px">℃&emsp;
+                                    脉搏<input type="text" id="pulse" style="width: 70px">次/分&emsp;
+                                    心率<input type="text" id="heartRate" style="width: 70px">次/分&emsp;
+                                    血压<input type="text" id="bloodPressure" style="width: 70px">mmHg
+                                    <br><br><br><br>
+                                    处方号<input type="text" id="prescriptionNum" style="width: 170px">
+                                    <div class="my-tooltip">
+                                        <img class="png" th:src="@{/images/icon/notice.png}">
+                                        <div class="tooltip">该处方号为协助门诊提供！正常流程无需填写！</div>
+                                    </div>
+
+                                    费用<input type="text" id="examinationCost" style="width: 70px">元
+                                </div>
+
+
+                                <div style="margin-left: 75%;">
+                                    <button class="btn btn-info mybutton2" onclick="savemedicalExaminationInfo()">提交信息
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!--队列-->
+                        <button class="showbar"></button>
+                        <div class="widget-bar">
+                            <div style="display: flex;">
+                                <h3>患者队列</h3>
+                                <button style="margin-left: 115px;margin-top: 7px" class="btn btn-info" title="刷新"
+                                        onclick="refreshQueue()">
+                                    <i class="fa fa-sync"></i>
+                                </button>
+                            </div>
+
+                            <!--稍后处理的就诊病人-->
+                            <div id="allPatientLater">
+                                <table id="alloutpatientqueue">
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div>
+    <div th:replace="common/common_js :: js(~{::script})"></div>
+    <script type="text/javascript" th:src="@{/js/jquery.preloader.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table-zh-CN.js}"></script>
+    <script type="text/javascript" th:src="@{/js/mjs/mjs_medicalExamination.js}"></script>
+</div>
+</body>
+</html>

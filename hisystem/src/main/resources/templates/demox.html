@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="common/common_css :: css(~{::link})">
+    </head>
+    <title>主页</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/preloader.css}">
+</head>
+<body>
+
+<div id="preloader">
+    <div id="preloader-inner"></div>
+</div>
+
+<div id="wrapper">
+    <div th:replace="common/common_left :: left"></div>
+
+    <div id="content-wrapper" class="d-flex flex-column content-wrapper">
+        <div id="content">
+            <div th:replace="common/common_head :: head"></div>
+
+            <!--正文-->
+            <div>
+                <div class="card shadow mb-4" style="margin-left: 2.5%">
+
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">demo</h6>
+                    </div>
+
+                    <div class="card-body">
+                        <div style=" margin-left: 1%;margin-right: 1%">
+                            <h1>hello</h1>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div>
+    <div th:replace="common/common_js :: js(~{::script})"></div>
+    <script type="text/javascript" th:src="@{/js/jquery.preloader.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table-zh-CN.js}"></script>
+</div>
+</body>
+</html>

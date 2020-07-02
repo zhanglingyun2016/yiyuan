@@ -1,0 +1,41 @@
+.mycard {
+    margin: 0 25%;
+    height: 38rem;
+}
+
+.textbox {
+    margin-top: 40px;
+    display: flex;
+    font-size: 18px;
+}
+
+.textbox_2 {
+    font-size: 18px;
+    margin: 4% 0 2% 5%;
+}
+
+.mybtn1 {
+
+    margin-left: 10%;
+}
+
+input {
+    text-align: center;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid #56A9BA;
+    margin-left: 1%;
+    color: #000080;
+}
+
+.testResult {
+    font-size: 18px;
+}
+
+.cardId-search {
+    margin-left: 6%;
+}
+.payType {
+    width: 110px;
+}

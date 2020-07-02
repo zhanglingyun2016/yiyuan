@@ -1,0 +1,20 @@
+
+input {
+    text-align: center;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid #56A9BA;
+    margin-left: 1%;
+    color: #000080;
+}
+
+.mybutton {
+    width: 58px;
+    font-size: 16px;
+    height: 35px;
+}
+
+.addNewDrug {
+    font-size: 18px;
+}

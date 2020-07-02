@@ -1,0 +1,121 @@
+/*
+a.mymodal_button {
+    text-decoration: none;
+    text-align: center;
+    text-shadow: 0 1px 0 #fff;
+    color: steelblue;
+    font-weight: 500;
+    padding: 8px 15px 8px 15px;
+    border: 1px solid rgba(26, 53, 71, 0.1);
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    transition: .25s;
+    background: linear-gradient(white, ghostwhite);
+
+}
+
+a.mymodal_button:hover {
+    border: 1px solid rgba(26, 53, 71, 0.2);
+    background: white;
+}*/
+
+.mymodal_wrapper {
+    width: 600px;
+    height: 100%;
+    margin: auto;
+    text-align: center;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mymodal_overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity .5s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.mymodal_overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.mymodal_modal {
+    position: relative;
+    margin: auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    transition: .5s;
+    opacity: 0;
+}
+
+.modal1 {
+    width: 20%;
+}
+
+.modal2 {
+    width: 30%;
+}
+
+.modal3 {
+    width: 33%;
+}
+.mymodal_modal .mymodal_content {
+    margin-top: 1rem;
+}
+
+/*.mymodal_modal .mymodal_content a {
+    max-width: 60%;
+    margin: auto;
+    display: block;
+}*/
+
+.mymodal_overlay:target > .mymodal_modal {
+    transform: translateY(30%) scale(0.9);
+    transition-timing-function: cubic-bezier(0.8, 0, 0, 1.5);
+    opacity: 1;
+}
+
+h2 {
+    margin-top: 0.5rem;
+    font-size: 20px;
+}
+
+/*
+a.mymodal_close {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 22px;
+    height: 22px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 20px;
+    line-height: 21px;
+    color: lightslategrey;
+    background-color: lightgrey;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    transition: .25s;
+}
+
+a.mymodal_close:hover {
+    background-color: tomato;
+    color: white;
+}
+*/

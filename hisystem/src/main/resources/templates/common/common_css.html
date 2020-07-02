@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!--<th:block></th:block>是Thymeleaf提供的唯一的一个Thymeleaf块级元素，其特殊性在于Thymeleaf
+模板引擎在处理<th:block>的时候会删掉它本身，而保留其内容。-->
+
+<th:block th:fragment="css(links)">
+    <meta charset="UTF-8">
+
+
+    <!-- 地址栏显示 -->
+    <link rel="Shortcut Icon" th:href="@{/images/hospital.ico}" type="image/x-icon"/>
+    <!-- 收藏栏也显示 -->
+    <link rel="Bookmark" th:href="@{/images/hospital.ico}" type="image/x-icon"/>
+
+    <link th:href="@{/sb-admin-2/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+<!--    <link th:href="@{https://fonts.loli.net/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i}"
+          rel="stylesheet">-->
+
+    <!-- Custom styles for this template-->
+    <link th:href="@{/sb-admin-2/css/sb-admin-2.css}" rel="stylesheet">
+
+    <link th:href="@{/sb-admin-2/bootstrap/bootstrap-table.css}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}">
+
+</th:block>
+</html>

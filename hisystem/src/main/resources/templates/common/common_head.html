@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<!--导航栏-->
+<nav class="navbar navbar-expand navbar-light bg-white-top topbar mb-4 static-top shadow" th:fragment="head">
+
+
+    <!-- 天气 -->
+    <div style="padding-left: 40px;padding-top: 25px">
+        <iframe id="tianqi" scrolling="no" src="" frameborder="0" width="470"
+                height="60" allowtransparency="true"></iframe>
+    </div>
+    <!-- 通知 -->
+    <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item dropdown no-arrow mx-1" shiro:hasRole="admin" id="notice" th:fragment="notice">
+            <a class="nav-link dropdown-toggle" href="#menuNotice" id="alertsDropdown" role="button"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <!-- 获取通知数量 -->
+                <span th:each="a,applystat:${applyRspList}">
+                            <span class="badge badge-danger badge-counter" th:text="${applystat.count}"></span>
+                                </span>
+            </a>
+            <!-- 通知账号遍历 -->
+            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                 aria-labelledby="alertsDropdown" id="menuNotice">
+                <h6 class="dropdown-header">
+                    等待审核角色的账号
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#"
+                   th:each="apply,applystat:${applyRspList}" th:if="${applystat.count}<=3">
+                    <div class="mr-3">
+                        <div class="icon-circle bg-primary">
+                            <i class="fas fa-file-alt text-white"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="small text-gray-500" th:text="${apply.dateTime}"></div>
+                        <td><span class="font-weight-bold" th:text="${apply.email}"></span></td>
+
+                    </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" th:href="@{/toApply}">查看所有</a>
+            </div>
+        </li>
+
+
+        <div class="topbar-divider d-none d-sm-block"></div>
+
+        <!-- 用户头像 -->
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#menuAccount" id="userDropdown" role="button"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!--用户名-->
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="head_username">
+                    <shiro:principal property="username"></shiro:principal></span>
+
+                <img class="img-profile rounded-circle" th:src="@{/sb-admin-2/img/doctorLogo.png}">
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                 aria-labelledby="userDropdown" id="menuAccount">
+                <a class="dropdown-item" th:href="@{/toUserinfo}">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    个人中心
+                </a>
+                <a class="dropdown-item" th:href="@{/accountset}">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    账号设置
+                </a>
+                <!-- <a class="dropdown-item" href="#">
+                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                 Activity Log
+             </a> -->
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" th:href="@{/logout}" data-toggle="modal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    退出登录
+                </a>
+            </div>
+        </li>
+
+    </ul>
+    <script th:src="@{/sb-admin-2/vendor/jquery/jquery.min.js}"></script>
+    <script>
+        $(function () {
+            $("#notice").load('/getRoleNotice');
+
+            var url = "https://tianqiapi.com/api.php?style=tg&skin=orange";
+            $("#tianqi").attr("src", url);
+        });
+        //天气预报
+        /*  window.onload = function () {
+              setTimeout("loadweather()", 500);
+          };*/
+
+        /* function loadweather(url) {
+             var url = "https://tianqiapi.com/api.php?style=tg&skin=orange";
+             $("#tianqi").attr("src", url);
+         }*/
+    </script>
+
+</nav>
+
+</html>

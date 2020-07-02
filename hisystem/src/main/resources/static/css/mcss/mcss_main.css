@@ -1,0 +1,91 @@
+.scroll_box {
+
+    width: 100%;
+    height: 285px;
+
+    position: relative;
+}
+
+.scroll_list {
+    width: 1200px;
+    height: 300px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -600px;
+}
+
+.scroll_ul li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    list-style: none;
+    /*    opacity: 0;*/
+    transition: all 0.3s ease-out;
+}
+
+.scroll_ul img {
+    width: 690px;
+    height: 260px;
+    border: none;
+    float: left;
+}
+
+.scroll_p1 {
+    transform: translate3d(-224px, 0, 0) scale(0.81);
+}
+
+.scroll_p2 {
+    transform: translate3d(0px, 0, 0) scale(0.81);
+    transform-origin: 0 50%;
+    /*opacity: 0.8;*/
+    z-index: 2;
+}
+
+.scroll_p3 {
+    transform: translate3d(224px, 0, 0) scale(1);
+    z-index: 3;
+    /*opacity: 1;*/
+}
+
+.scroll_p4 {
+    transform: translate3d(449px, 0, 0) scale(0.81);
+    transform-origin: 100% 50%;
+    /*opacity: 0.8;*/
+    z-index: 2;
+}
+
+.scroll_buttons {
+    position: absolute;
+    width: 1200px;
+    height: 30px;
+    bottom: 0;
+    left: 50%;
+    margin-left: -600px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.scroll_buttons a {
+    display: inline-block;
+    width: 35px;
+    height: 5px;
+    padding-top: 4px;
+    cursor: pointer;
+}
+
+.scroll_buttons span {
+    display: block;
+    width: 35px;
+    height: 1px;
+    background: red;
+}
+
+.scroll_buttons .scroll_blue {
+    background: blue;
+}
+
+.ann_img {
+    height: 50px;
+    width: 50px;
+}

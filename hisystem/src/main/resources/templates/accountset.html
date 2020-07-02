@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <head th:replace="common/common_css :: css(~{::link})">
+    </head>
+    <title>账号设置</title>
+    <link th:href="@{/css/mcss/mcss_accountset.css}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chosen.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/preloader.css}">
+</head>
+<body>
+
+<div id="preloader">
+    <div id="preloader-inner"></div>
+</div>
+
+<div id="wrapper">
+    <div th:replace="common/common_left :: left"></div>
+
+    <div id="content-wrapper" class="d-flex flex-column content-wrapper">
+        <div id="content">
+            <div th:replace="common/common_head :: head"></div>
+
+            <!--正文-->
+            <div style="margin-left: 15%">
+                <div class="tab-content">
+                    <div id="account1" class="container tab-pane active"><br>
+                        <div style="width: 70%;float: left;">
+                            <div class="card shadow mb-4" style="margin-left: 1%">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">登录信息</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div style=" margin-left: 1%;margin-right: 1%">
+                                        <table id="LoginInfor">
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="account2" class="container tab-pane fade"><br>
+                        <div style="width: 70%;float: left;">
+                            <div class="card shadow mb-4" style="margin-left: 1%">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">修改密码</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div style=" margin-left: 18%;margin-right: 4%;">
+
+                                        <div class="form-group">
+                                            <label for="oldPassword" class="col-sm-2 control-label">原始密码</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="oldPassword">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="newPassword" class="col-sm-2 control-label">新密码</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="newPassword">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="okPassword" class="col-sm-2 control-label">确认密码</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="okPassword">
+                                            </div>
+                                        </div>
+                                        <div style="margin-left: 70%;margin-top: 20px">
+
+                                            <button class="btn btn-primary btn-lg" id="changePassword"
+                                                    onclick="changePassword()">确认
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="account3" class="container tab-pane fade"><br>
+                        <div style="width: 70%;float: left;">
+                            <div class="card shadow mb-4" style="margin-left: 1%;height: 450px">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">添加角色</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div style=" margin-left: 20%;margin-right: 4%;">
+
+
+                                        <div style="font-size: 18px">
+                                            <div style="display: flex;margin-top: 1.5rem">
+                                                <div>当前账户
+                                                    <div style="color: #56A9BA;margin-left: 1rem">
+                                                        <shiro:principal property="email"></shiro:principal>
+                                                    </div>
+                                                </div>
+                                                <div style="margin-left: 4rem">
+                                                    拥有角色
+                                                    <div style="color: #56A9BA">
+                                                        <div id="getAccountRole" th:fragment="accountRole">
+                                                            <div th:each="accountRole:${accountRole}">
+                                                                <span style="margin-left: 1rem"
+                                                                      th:text="${accountRole}"></span>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div style="margin-top: 2.5rem">
+                                                选择添加的角色
+                                                <select class='roleSelect' data-placeholder=' '>
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <div style="margin-left: 60%;margin-top: 30px">
+
+                                            <button class="btn btn-primary btn-lg" id="anotherRole"
+                                                    onclick="addAnotherRole()">确认
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div style="width: 20%;float: left">
+                    <div style="width: 40%;">
+                        <ul class="nav nav-pills  flex-column" role="tablist">
+                            <li class="nav-item" style="text-align: center">
+                                <a class="nav-link active" data-toggle="pill" href="#account1">登录记录</a>
+                            </li>
+                            <li class="nav-item" style="text-align: center">
+                                <a class="nav-link" data-toggle="pill" href="#account2">修改密码</a>
+                            </li>
+                            <li class="nav-item" style="text-align: center">
+                                <a class="nav-link" data-toggle="pill" href="#account3">添加角色</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div>
+    <div th:replace="common/common_js :: js(~{::script})"></div>
+    <script type="text/javascript" th:src="@{/js/jquery.preloader.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/chosen.jquery.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table-zh-CN.js}"></script>
+    <script type="text/javascript" th:src="@{/js/mjs/mjs_accountset.js}"></script>
+</div>
+</body>
+</html>

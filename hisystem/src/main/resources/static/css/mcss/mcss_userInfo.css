@@ -1,0 +1,21 @@
+
+.modalx {
+    position: fixed;
+    z-index: 99999;
+    background-color: rgba(100, 100, 100, 0.6);
+    border-radius: 5px;
+
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    display: none;
+    line-height: 45px;
+    left: 55%;
+    top: 73%;
+}
+
+.modalxa {
+    margin-right: 12px;
+    margin-left: 12px;
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="common/common_css :: css(~{::link})">
+    </head>
+    <title>系统维护</title>
+    <link th:href="@{/css/mcss/mcss_announcement.css}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{css/mcss/model/component.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/tooltipify.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/preloader.css}">
+</head>
+<body>
+
+<div id="preloader">
+    <div id="preloader-inner"></div>
+</div>
+
+<div id="wrapper">
+    <div th:replace="common/common_left :: left"></div>
+
+    <div id="content-wrapper" class="d-flex flex-column content-wrapper">
+        <div id="content">
+            <div th:replace="common/common_head :: head"></div>
+
+            <!--正文-->
+            <div>
+                <div class="tab-content">
+                    <div id="announcement1" class="container tab-pane active"><br>
+                        <div style="width: 96%;float: left;">
+                            <div class="card shadow mb-4" style="margin-left: 1%">
+                                <div class="card-body">
+                                    <div style=" margin-left: 1%;margin-right: 1%">
+                                        <table id="Announcement">
+                                        </table>
+
+                                        <!--模态框_修改-->
+                                        <div id="mymodal_2" class="mymodal_overlay">
+                                            <div class="mymodal_modal modal2">
+                                                <img class="png" th:src="@{/images/icon/change.png}">
+                                                <!--<a class="mymodal_close" href="#">×</a>-->
+                                                <div style="margin-top: 20px">
+
+                                                    <div>
+                                                        <label style="font-size: 20px" for="title">标题</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" id="title">
+                                                        </div>
+                                                    </div>
+
+                                                    <div style="margin-top: 0.7rem">
+                                                        <label style="font-size: 20px" for="contents">内容</label>
+                                                        <div>
+                                                            <textarea style="height:160px" class="form-control"
+                                                                      id="contents"></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <input type="hidden" id="change_id">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a style="text-decoration: none" href="#">
+                                                        <button type="button" class="btn btn-primary"
+                                                                href="#">取消
+                                                        </button>
+                                                    </a>
+                                                    <!-- <a style="text-decoration: none" href="#">-->
+                                                    <button type="button" class="btn btn-primary"
+                                                            onclick="changeAnnouncement()">确认
+                                                    </button>
+                                                    <!--</a>-->
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--模态框_删除-->
+                                        <div id="mymodal_1" class="mymodal_overlay">
+                                            <div class="mymodal_modal modal1">
+                                                <img class="png" th:src="@{/images/icon/delete.png}">
+                                                <div class="modal-body">
+                                                    请确认您的操作！
+                                                    <input type="hidden" id="delete_id">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a style="text-decoration: none" href="#">
+                                                        <button type="button" class="btn btn-primary"
+                                                                href="#">取消
+                                                        </button>
+                                                    </a>
+                                                    <a style="text-decoration: none" href="#">
+                                                        <button type="button" class="btn btn-primary"
+                                                                onclick="deleteAnnouncement()">确认
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--模态框_添加主页-->
+                                        <div id="mymodal_3" class="mymodal_overlay">
+                                            <div class="mymodal_modal modal1">
+                                                <img class="png" th:src="@{/images/icon/add.png}">
+                                                <div class="modal-body">
+                                                    请确认您的操作！
+                                                    <input type="hidden" id="add_id">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a style="text-decoration: none" href="#">
+                                                        <button type="button" class="btn btn-primary"
+                                                                href="#">取消
+                                                        </button>
+                                                    </a>
+                                                    <a style="text-decoration: none" href="#">
+                                                        <button type="button" class="btn btn-primary"
+                                                                onclick="showAnnouncement()">确认
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--模态框_移除-->
+                                        <div id="mymodal_4" class="mymodal_overlay">
+                                            <div class="mymodal_modal modal1">
+                                                <img class="png" th:src="@{/images/icon/subann.png}">
+                                                <div class="modal-body">
+                                                    请确认您的操作！
+                                                    <input type="hidden" id="sub_id">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a style="text-decoration: none" href="#">
+                                                        <button type="button" class="btn btn-primary"
+                                                                href="#">取消
+                                                        </button>
+                                                    </a>
+                                                    <a style="text-decoration: none" href="#">
+                                                        <button type="button" class="btn btn-primary"
+                                                                onclick="hiddenAnnouncement()">确认
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="announcement2" class="container tab-pane fade"><br>
+                        <div style="width: 96%;float: left;">
+                            <div class="card shadow mb-4" style="margin-left: 1%">
+                                <div class="card-body">
+                                    <div style=" margin-left: 18%;margin-right: 4%;margin-top: 5%;margin-bottom: 3%;">
+
+                                        <div class="form-group">
+                                            <label for="title" class="col-sm-2 control-label">标题</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="add_title">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contents" class="col-sm-2 control-label">内容</label>
+                                            <div class="col-sm-10">
+                                                <textarea style="height:200px" class="form-control"
+                                                          id="add_contents"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div style="margin-left: 74%;margin-top: 25px">
+
+                                            <button class="btn btn-primary btn-lg" onclick="addAnnouncement()">确认
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div style="width: 20%;float: left">
+                    <div style="width: 40%;">
+                        <ul class="nav nav-pills  flex-column" role="tablist">
+                            <li class="nav-item" style="text-align: center">
+                                <a class="nav-link active" data-toggle="pill" href="#announcement1">查看所有</a>
+                            </li>
+                            <li class="nav-item" style="text-align: center">
+                                <a class="nav-link" data-toggle="pill" href="#announcement2">新增公告</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modalx">
+        <div class="modalxa"></div>
+    </div>
+</div>
+
+
+<div>
+    <div th:replace="common/common_js :: js(~{::script})"></div>
+    <script type="text/javascript" th:src="@{/js/jquery.preloader.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-tooltipify.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table-zh-CN.js}"></script>
+    <script type="text/javascript" th:src="@{/js/mjs/mjs_announcement.js}"></script>
+</div>
+</body>
+</html>

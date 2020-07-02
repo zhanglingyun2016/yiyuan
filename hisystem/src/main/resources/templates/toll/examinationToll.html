@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="common/common_css :: css(~{::link})">
+    </head>
+    <title>体检收费</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/mcss/mcss_examinationTollInfo.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chosen.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/preloader.css}">
+</head>
+<body>
+
+<div id="preloader">
+    <div id="preloader-inner"></div>
+</div>
+<div id="wrapper">
+    <div th:replace="common/common_left :: left"></div>
+
+    <div id="content-wrapper" class="d-flex flex-column content-wrapper">
+        <div id="content">
+            <div th:replace="common/common_head :: head"></div>
+
+            <!--正文-->
+            <div>
+                <div class="card shadow mb-4" style="margin-left: 2.5%;height: 818px;">
+
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">体检收费</h6>
+                    </div>
+
+                    <div class="card-body">
+                        <div style=" margin-left: 1%;margin-right: 1%">
+
+                            <div class="card mycard">
+
+                                <div style="margin-left: 5%">
+                                    <div class="textbox">
+                                        卡号<input type="text" style="width: 140px" id="cardId">
+                                        <div class="cardId-search">
+                                            <button class="btn btn-success" onclick="getExaminationTollInfo(1)">
+                                                <img class="png" th:src="@{/images/icon/search.png}">
+                                            </button>
+                                        </div>
+                                        <div class="mybtn1">
+                                            <button class="btn btn-info" onclick="getExaminationTollInfo(0)">读取就诊卡
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="textbox_2">
+
+                                    姓名<input type="text" id="name" style="width: 120px" readonly="readonly">&emsp;
+                                    性别<input type="text" id="sex" style="width: 90px" readonly="readonly">&emsp;
+                                    民族<input type="text" id="nationality" style="width: 90px" readonly="readonly">&emsp;
+                                    年龄<input type="text" id="age" style="width:100px" readonly="readonly">
+                                    <input type="text" id="queueId" hidden="hidden"><!--隐藏队列Id-->
+
+                                </div>
+
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">检查结果</h6>
+                                </div>
+
+                                <div class="textbox_2">
+                                    体温<input type="text" id="bodyTemperature" style="width: 70px" readonly="readonly">℃&emsp;
+                                    脉搏<input type="text" id="pulse" style="width: 70px" readonly="readonly">次/分&emsp;
+                                    心率<input type="text" id="heartRate" style="width: 70px" readonly="readonly">次/分&emsp;
+                                    血压<input type="text" id="bloodPressure" style="width: 70px" readonly="readonly">mmHg
+                                    <br><br>
+                                    处方号<input type="text" id="prescriptionNum" style="width: 170px" readonly="readonly">
+                                    <input type="text" id="registerId" hidden="hidden">
+                                </div>
+
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">收费</h6>
+                                </div>
+
+                                <div class="textbox_2">
+
+                                    费用<input type="text" id="examinationCost" style="width: 70px" readonly="readonly">元
+                                    &emsp;&emsp;
+                                    <div style="display: inline-block">
+                                        付款方式<select class='payType' data-placeholder=' '>
+                                         
+                                        <option value=""></option>
+
+                                        <option value="现金">现金</option>
+                                           
+                                        <option value="支付宝">支付宝</option>
+                                         
+                                    </select>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex">
+                                    <div style="width: 60%;margin:3% 0 0 5%">
+                                        <div id="money" style="display: none">
+                                            实付<input type="text" id="payMoney" style="width: 120px"
+                                                     oninput="getChange()">元&emsp;&emsp;&emsp;
+                                            找零<input type="text" id="Change" style="width: 100px;color: red"
+                                                     readonly="readonly">元
+                                        </div>
+
+                                        <div id="apay" style="display: none;margin-left: 40%">
+                                            <img style="width: 100px;height: 100px;"
+                                                 th:src="@{/images/icon/apay.jpg}">
+                                        </div>
+                                    </div>
+
+                                    <div style="margin:5% 0 0 8%">
+                                        <button class="btn btn-info mybutton2" onclick="saveExaminationTollInfo()">
+                                            提交信息
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div>
+    <div th:replace="common/common_js :: js(~{::script})"></div>
+    <script type="text/javascript" th:src="@{/js/jquery.preloader.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/chosen.jquery.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table-zh-CN.js}"></script>
+    <script type="text/javascript" th:src="@{/js/mjs/mjs_examinationTollInfo.js}"></script>
+</div>
+</body>
+</html>

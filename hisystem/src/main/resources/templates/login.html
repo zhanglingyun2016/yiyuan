@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>登录</title>
+
+    <!-- 地址栏显示 -->
+    <link rel="Shortcut Icon" th:href="@{/images/hospital.ico}" type="image/x-icon"/>
+    <!-- 收藏栏也显示 -->
+    <link rel="Bookmark" th:href="@{/images/hospital.ico}" type="image/x-icon"/>
+    <link th:href="@{/css/auth.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/bg.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{http://cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css}" rel="stylesheet"
+          type="text/css"/>
+    <link th:href="@{/css/mcss/mcss_login.css}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}">
+</head>
+
+
+<body onload="getCookie();choseRole()">
+
+<div class="lowin">
+    <div class="lowin-brand">
+        <img th:src="@{/images/hospitory.png}" alt="logo">
+    </div>
+    <div class="lowin-wrapper">
+        <div class="lowin-box lowin-login">
+            <div class="lowin-box-inner">
+                <form>
+                    <p>Welcome</p>
+                    <div class="lowin-group">
+                        <label>Email </label>
+                        <input type="email" autocomplete="email" name="LoginEmail" id="LoginEmail" class="lowin-input">
+                    </div>
+                    <div class="lowin-group password-group">
+                        <label>Password </label>
+                        <input type="password" name="LoginPassword" id="LoginPassword" class="lowin-input">
+                    </div>
+                    <div class="lowin-group">
+                        <input type="checkbox" id="checkbox"/>
+                        <label>记住密码</label>
+                    </div>
+
+                    <input id="loginId" type="button" style="text-align: center" class="lowin-btn login-btn"
+                           value="登&emsp;录" onclick="dologin()">
+
+
+                    <div class="text-foot">
+                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                        &emsp;&emsp;&emsp;&emsp;<a href="" class="register-link">注册</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="lowin-box lowin-register">
+            <div class="lowin-box-inner">
+                <p>Register</p>
+                <div class="lowin-group">
+
+                    <input type="text" name="username" id="username" autocomplete="username" placeholder="Name"
+                           class="lowin-input">
+                </div>
+                <div class="lowin-group">
+
+                    <input type="email" autocomplete="email" name="registerEmail" id="registerEmail"
+                           placeholder="Email"
+                           class="lowin-input">
+                </div>
+                <div class="lowin-group">
+
+                    <input type="password" name="registerPassword" autocomplete="current-password"
+                           id="registerPassword" placeholder="Password" class="lowin-input">
+                </div>
+                <div class="select dowebok">
+                    <span class="placeholder" id="chooseRole">请选择角色</span>
+                    <ul id="allRole">
+                        <li value=""></li>
+                    </ul>
+                </div>
+
+                <button class="lowin-btn" onclick="register()">
+                    注&emsp;册
+                </button>
+
+                <div class="text-foot">
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                    &emsp;&emsp;&emsp;&emsp;<a href="" class="login-link">登录</a>
+                </div>
+            </div>
+        </div>
+        <div class="modalx">
+            <div class="modalxa"></div>
+        </div>
+    </div>
+
+    <footer class="lowin-footer">
+        Design By sen --<a href="https://mail.qq.com/" target="_blank" title="xue.sen@qq.com">xue.sen@qq.com</a>.
+    </footer>
+
+
+</div>
+
+
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/auth.js}"></script>
+<script th:src="@{http://pv.sohu.com/cityjson?ie=utf-8}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.cookie.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.base64.js}"></script>
+<script type="text/javascript" th:src="@{/js/sweetalert-dev.js}"></script>
+<script type="text/javascript" th:src="@{/js/mjs/mjs_login.js}"></script>
+</body>
+
+</html>

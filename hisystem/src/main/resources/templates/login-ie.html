@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="lowin-group">
+    <label>Email </label>
+    <input type="email" autocomplete="email" name="LoginEmail" id="LoginEmail" class="lowin-input">
+</div>
+<div class="lowin-group password-group">
+    <label>Password </label>
+    <input type="password" name="LoginPassword" id="LoginPassword" class="lowin-input">
+</div>
+<div class="lowin-group">
+    <input type="checkbox" id="checkbox"/>
+    <label>记住密码</label>
+</div>
+
+<input id="loginId" type="button" style="text-align: center" class="lowin-btn login-btn"
+       value="登&emsp;录" onclick="dologin()">
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script>
+    function dologin() {
+
+        var user = {
+            email: $("#LoginEmail").val(),
+            password: $("#LoginPassword").val(),
+            broswer: '',
+            ip: ''
+        };
+
+        $.ajax({
+            url: "/user/dologin",
+            type: "post",
+            dataType: "text",
+            contentType: 'application/json',
+            data: JSON.stringify(user),
+            success: function (data) {
+
+                if (data == "SUCCESS") {
+                    window.location.href = "/main"
+                } else {
+
+                    swal(data, "", "error")
+                }
+
+            }
+        });
+
+    }
+</script>
+</body>
+</html>

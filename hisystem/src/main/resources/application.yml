@@ -1,0 +1,39 @@
+#配置文件的作用：修改Spring Boot自动配置的默认值，SpringBoot在底层都给我们自动
+#配置好。有什么配置项，可以移步官方文档
+
+server:
+  port: 8080
+#  servlet:
+#    context-path: /hisystem
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/hospital?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 1234
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  mail:
+    default-encoding: UTF-8
+    host: smtp.qq.com
+    password:
+    username: 1208585122@qq.com
+  thymeleaf:
+    cache: false
+    check-template-location: true
+    enabled: true
+    mode: LEGACYHTML5
+    prefix: classpath:/templates/
+    servlet:
+      content-type: text/html
+    suffix: .html
+  #热部署(若html或js有更改，要开启浏览器自动刷新功能，先禁用浏览器缓存，使用LiveReload插件)
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true

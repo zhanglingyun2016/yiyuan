@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="common/common_css :: css(~{::link})">
+    </head>
+    <title>药房取药</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chosen.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/mcss/mcss_takingdrug.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/preloader.css}">
+</head>
+<body>
+
+<div id="preloader">
+    <div id="preloader-inner"></div>
+</div>
+
+<div id="wrapper">
+    <div th:replace="common/common_left :: left"></div>
+
+    <div id="content-wrapper" class="d-flex flex-column content-wrapper">
+        <div id="content">
+            <div th:replace="common/common_head :: head"></div>
+
+            <!--正文-->
+            <div>
+                <div class="card shadow mb-4" style="margin-left: 2.5%">
+
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">药房取药</h6>
+                    </div>
+
+                    <div class="card-body takingdrug">
+
+                        <div class="split split-horizontal card prescription" id="myprescription">
+
+                            <div style="display: flex">
+                                <h4 style="font-family: STLiti,serif;color: #2C9FAF">SHOSPITAL</h4>
+
+                                <h2>门诊处方笺</h2>
+
+                                <div style="font-size: 15px;margin-left: 26%">
+                                    <div id="nowDate"></div>
+                                </div>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                处方号<input type="text" id="prescriptionNum" style="width: 170px"
+                                          readonly="readonly">
+                                科室<input type="text" id="department" style="width: 110px" readonly="readonly">&emsp;
+                                日期<input type="text" id="createDate" style="width: 133px" readonly="readonly">
+                                <br> <br>
+                                姓名<input type="text" id="name" style="width: 110px" readonly="readonly">&emsp;
+                                性别<input type="text" id="sex" style="width: 90px" readonly="readonly">
+                                民族<input type="text" id="nationality" style="width: 90px" readonly="readonly">
+                                年龄<input type="text" id="age" style="width:90px" readonly="readonly">
+                                <br> <br>
+                                初步诊断<input type="text" id="diagnosisResult" style="width:505px" readonly="readonly">
+                            </div>
+
+                            <div style="display: flex">
+                                <div style="font-size: 1.1rem">
+                                    <img style="width: 70px;height: 70px;margin-left: 60px;"
+                                         th:src="@{/images/icon/prescription.png}">
+                                </div>
+
+
+                            </div>
+
+                            <div>
+                                <div id="prescription" class="prescription-1"></div>
+
+                                <div style="margin: 0 130px 0 100px">
+                                    <div style="display: flex;">
+                                        <div style="display: flex;width: 410px">
+                                            <div>
+                                                医嘱
+                                            </div>
+                                            <div style="margin-left: 10px" id="medicalOrder"></div>
+                                        </div>
+                                        <div style="display: flex;">
+                                            <div>医师</div>
+                                            <div>
+                                                <input type="text" id="doctorName" style="width:90px"
+                                                       readonly="readonly">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <hr>
+                                    <div style="display: flex;">
+                                        <div style="display: flex">
+                                            <div>药费</div>
+                                            <div>
+                                                <input type="text" id="drugCost" style="width:90px" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div style="display: flex;margin-left: 20px">
+                                            <div>检查费</div>
+                                            <div>
+                                                <input type="text" id="examinationCost" style="width:90px"
+                                                       readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div style="margin-left: 130px">
+                                            签字:
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="split split-horizontal takingDrugOperation" id="takingDrugOperation">
+
+                            <div class="CardIdInfor">
+                                处方号：<input type="text" style="width: 160px" id="prescriptionNum_input">
+                                <div class="mybtn1">
+                                    <button class="btn btn-info" onclick="getMedicalRecord()">
+                                        <img class="png" th:src="@{/images/icon/search.png}">
+                                    </button>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="textbox_2">
+
+                                <div style="margin: 16px 5px 0 0;color: #2C9FAF">
+                                    拿药完成
+                                </div>
+
+                                <div class="mybtn3">
+
+                                    <button class="btn btn-info" onclick="saveTakingDrugInfo()">提交信息</button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div>
+    <div th:replace="common/common_js :: js(~{::script})"></div>
+    <script type="text/javascript" th:src="@{/js/jquery.preloader.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/chosen.jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/split.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.jqprint-0.3.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table-zh-CN.js}"></script>
+    <script type="text/javascript" th:src="@{/js/mjs/mjs_takingdrug.js}"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+我们运行Spring Boot应用是从main方法启动，在主程序类上有一个
+@SpringBootApplication注解。
+@SpringBootApplication是一个复合注解，包括@ComponentScan，和
+@SpringBootConfiguration，@EnableAutoConfiguration。
+@SpringBootConfiguration继承自@Configuration，二者功能也一致，标注当前类
+是配置类，并会将当前类内声明的一个或多个以@Bean注解标记的方法的实例纳入到
+srping容器中，并且实例名就是方法名。
+@EnableAutoConfiguration的作用启动自动的配置，@EnableAutoConfiguration注
+解的意思就是SpringBoot根据你添加的jar包来配置你项目的默认配置，比如根据
+spring-boot-starter-web ，来判断你的项目是否需要添加了webmvc和tomcat，就
+会自动的帮你配置web项目中所需要的默认配置
+@ComponentScan，扫描当前包及其子包下被@Component，@Controller，
+@Service，@Repository注解标记的类并纳入到spring容器中进行管理。是以前的co
+ntext:component-scan（以前使用在xml中使用的标签，用来扫描包配置的平行支
+持）。

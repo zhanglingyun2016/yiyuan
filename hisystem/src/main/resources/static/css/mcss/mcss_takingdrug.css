@@ -1,0 +1,93 @@
+.gutter {
+    background-color: #eee;
+
+    background-repeat: no-repeat;
+    background-position: 50%;
+
+    cursor: move;
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+.gutter.gutter-horizontal {
+    background-image: url('grips/vertical.png');
+}
+
+.gutter.gutter-vertical {
+    background-image: url('grips/horizontal.png');
+}
+
+.split {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.gutter.gutter-horizontal {
+    height: 744px;
+    float: left;
+    margin-left: 10px;
+}
+
+.takingdrug {
+    width: 100%;
+    margin-left: 1%;
+    margin-right: 1%;
+    display: flex;
+    height: 764px;
+}
+
+.prescription {
+    margin: 0 10%;
+}
+
+.prescription-1 {
+    width: 480px;
+    height: 325px;
+    margin: 0 0 0 145px
+}
+
+.prescription h2 {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 600;
+    margin-left: 20%;
+}
+
+
+.textbox {
+    font-size: 17px;
+    margin: 30px 0 15px 80px;
+}
+
+.takingDrugOperation {
+    margin-left: 2%;
+    font-size: 17px;
+}
+
+.mybtn1 {
+    margin-left: 30px;
+}
+
+input {
+    text-align: center;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid #56A9BA;
+    margin-left: 1%;
+    color: #000080;
+}
+
+.CardIdInfor {
+    display: flex;
+    margin-top: 30%;
+}
+
+.textbox_2 {
+    display: flex;
+    margin: 80px 0 0 142px;
+}

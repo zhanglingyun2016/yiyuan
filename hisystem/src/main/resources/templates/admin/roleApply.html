@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="common/common_css :: css(~{::link})">
+    </head>
+    <title>角色审核</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/mcss/model/component.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/preloader.css}">
+</head>
+<body>
+
+<div id="preloader">
+    <div id="preloader-inner"></div>
+</div>
+<div id="wrapper">
+    <div th:replace="common/common_left :: left"></div>
+
+    <div id="content-wrapper" class="d-flex flex-column content-wrapper">
+        <div id="content">
+            <div th:replace="common/common_head :: head"></div>
+
+            <!--正文-->
+            <div>
+                <div class="card shadow mb-4" style="margin-left: 2.5%">
+                    <div class="card-body">
+                        <div style=" margin-left: 1%;margin-right: 1%">
+                            <table id="roleApplyTable">
+                            </table>
+
+                            <!--模态框_通过-->
+                            <div id="mymodal_1" class="mymodal_overlay">
+                                <div class="mymodal_modal modal1">
+                                    <!--<img class="png" th:src="@{/images/icon/pass.png}">-->
+                                    <div class="modal-body">
+                                        请确认您的操作！
+                                        <input type="hidden" name="email" id="email" class="form-control">
+                                        <input type="hidden" name="status" id="status" class="form-control">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a style="text-decoration: none" href="#">
+                                            <button type="button" class="btn btn-primary"
+                                                    href="#">取消
+                                            </button>
+                                        </a>
+                                        <a style="text-decoration: none" href="#">
+                                            <button type="button" class="btn btn-primary"
+                                                    onclick="changeRoleStatus()">确认
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--模态框_不通过-->
+                            <!--                      <div id="mymodal_2" class="mymodal_overlay">
+                                                      <div class="mymodal_modal modal1">
+                                                          <img class="png" th:src="@{/images/icon/nopass.png}">
+                                                          <div class="modal-body">
+                                                              请确认您的操作！
+                                                              <input type="hidden" name="email" id="nopass_email" class="form-control">
+                                                              <input type="hidden" name="status" id="nopass_status" class="form-control">
+                                                          </div>
+                                                          <div class="modal-footer">
+                                                              <a style="text-decoration: none" href="#">
+                                                                  <button type="button" class="btn btn-primary"
+                                                                          href="#">取消
+                                                                  </button>
+                                                              </a>
+                                                              <a style="text-decoration: none" href="#">
+                                                                  <button type="button" class="btn btn-primary"
+                                                                          onclick="changeRoleStatus()">确认
+                                                                  </button>
+                                                              </a>
+                                                          </div>
+                                                      </div>
+                                                  </div>-->
+
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div th:replace="common/common_js :: js(~{::script})"></div>
+    <script type="text/javascript" th:src="@{/js/jquery.preloader.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table-zh-CN.js}"></script>
+    <script type="text/javascript" th:src="@{/js/mjs/mjs_role_apply.js}"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+.textbox {
+    display: flex;
+    margin-left: 23%;
+    font-size: 18px;
+}
+
+.textbox input {
+    text-align: center;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid #56A9BA;
+    margin-left: 1%;
+    color: #000080;
+}
+
+.textbox .mybtn1 {
+    margin-left: 5%;
+}
+
+.textbox .mybtn {
+    margin-left: 5%;
+}
+
+.textbox_1 {
+    font-size: 20px;
+    margin-top: 3%;
+    margin-left: 9%
+}
+
+.textbox_1 input {
+    text-align: center;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid #56A9BA;
+    margin-left: 1%;
+    color: #000080;
+}
+
+.textbox_1 .cardid {
+    margin: 30px 0 15px 0;
+}
+
+.textbox_2 {
+    font-size: 18px;
+    margin-left: 23%;
+    margin-top: 2%;
+}
+
+.textbox_2 input {
+    text-align: center;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid #56A9BA;
+    margin-left: 1%;
+    color: #000080;
+}
+
+.textbox_2 .payType {
+    width: 120px;
+}
+
+.textbox_3 {
+    font-size: 18px;
+    margin-left: 23%;
+    margin-top: 3%;
+    display: flex;
+}
+
+.textbox_3 .select {
+    width: 180px;
+
+}
+
+.textbox_3 input {
+    text-align: center;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid #56A9BA;
+    color: #000080;
+    width: 100px;
+}
+
+.cardId-search {
+    margin-left: 6%;
+}
+
+.register_table {
+    margin-left: 17.5%;
+    margin-top: 1.5%;
+    width: 57%;
+
+    border: 1px solid #56A9BA;
+}
+
+.mybtn3 {
+    margin-left: 13%;
+    margin-top: 30px;
+}

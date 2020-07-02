@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="common/common_css :: css(~{::link})">
+    </head>
+    <title>主页</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/mcss/mcss_main.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{/css/preloader.css}">
+</head>
+<body>
+
+<div id="preloader">
+    <div id="preloader-inner"></div>
+</div>
+
+<div id="wrapper">
+    <div th:replace="common/common_left :: left"></div>
+
+    <div id="content-wrapper" class="d-flex flex-column content-wrapper">
+        <div id="content">
+            <div th:replace="common/common_head :: head"></div>
+
+            <!--正文-->
+            <div>
+
+                <!-- 顶部轮播图-->
+                <div class="scroll_box">
+                    <div class="scroll_list">
+                        <ul class="scroll_ul">
+                            <li class="scroll_p4"><a href="#"><img th:src="@{/images/img/1.jpg}"
+                                                                   alt=""/></a></li>
+                            <li class="scroll_p3"><a href="#"><img th:src="@{/images/img/2.jpg}"
+                                                                   alt=""/></a></li>
+                            <li class="scroll_p2"><a href="#"><img th:src="@{/images/img/3.jpg}"
+                                                                   alt=""/></a></li>
+                            <li class="scroll_p1"><a href="#"><img th:src="@{/images/img/4.jpg}"
+                                                                   alt=""/></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="scroll_buttons">
+                        <a href="javascript:;"><span class="scroll_blue"></span></a>
+                        <a href="javascript:;"><span></span></a>
+                        <a href="javascript:;"><span></span></a>
+                        <a href="javascript:;"><span></span></a>
+                    </div>
+                </div>
+
+                <div class="card shadow mb-4" style="margin-left: 2.5%;margin-top:20px;height: 439px;">
+                    <div class="card-body">
+                        <div style=" margin-left: 1%;margin-right: 1%">
+
+                            <div style="margin-top: 25px;margin-left: 50px">
+                                <div style="width: 5%;float: left;text-align: center;margin-top: 120px;">
+                                    <img class="ann_img" th:src="@{/images/icon/annn.png}"><br>
+                                    <span>公告</span>
+                                </div>
+
+                                <div style="display: flex;">
+                                    <div style="margin-left: 8%;">
+                                        <ui id="ann_display" th:fragment="ann">
+                                            <li th:each="annlist:${annList}">
+                                                <a th:text="${annlist.title}" href="#"
+                                                   th:onclick="getAnnContent([[${annlist.id}]])">
+                                                </a>
+                                                <span th:text="${annlist.annDate}"
+                                                      style="float: right;margin-left: 110px;">
+                                                </span>
+                                            </li>
+                                        </ui>
+                                    </div>
+                                    <div style="margin-left: 20%">
+                                        <div style="text-align: center;font-size: 19px;font-weight: 600;margin-bottom: 10px;"  id="anntitle"></div>
+                                        <pre style="font-size: 18px" id="annContent"></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="common/common_js :: js(~{::script})"></div>
+<script type="text/javascript" th:src="@{/js/jquery.preloader.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/mjs/mjs_main.js}"></script>
+</body>
+</html>

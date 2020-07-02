@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="common/common_css :: css(~{::link})">
+    </head>
+    <title>门诊收费</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chosen.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/mcss/mcss_outpatientToll.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/mcss/mcss_notice.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/preloader.css}">
+</head>
+<body>
+
+<div id="preloader">
+    <div id="preloader-inner"></div>
+</div>
+<div id="wrapper">
+    <div th:replace="common/common_left :: left"></div>
+
+    <div id="content-wrapper" class="d-flex flex-column content-wrapper">
+        <div id="content">
+            <div th:replace="common/common_head :: head"></div>
+
+            <!--正文-->
+            <div>
+                <div class="card shadow mb-4" style="margin-left: 2.5%">
+
+                    <div class="card-header py-3" style="display: flex;">
+                        <h6 class="m-0 font-weight-bold text-primary">划价收费</h6>
+                        <button class="btn btn-info mybutton-toll" onclick="printPrescription()">打印</button>
+                    </div>
+
+                    <div class="card-body toll">
+
+                        <div class="split split-horizontal card prescription" id="myprescription">
+
+                            <div style="display: flex">
+                                <h4 style="font-family: STLiti,serif;color: #2C9FAF">SHOSPITAL</h4>
+
+                                <h2>门诊处方笺</h2>
+
+                                <div style="font-size: 15px;margin-left: 26%">
+                                    <div id="nowDate"></div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="textbox">
+
+                                处方号<input type="text" id="prescriptionNum" style="width: 170px"
+                                          readonly="readonly">
+                                科室<input type="text" id="department" style="width: 110px" readonly="readonly">&emsp;
+                                日期<input type="text" id="createDate" style="width: 133px" readonly="readonly">
+                                <br> <br>
+                                姓名<input type="text" id="name" style="width: 110px" readonly="readonly">&emsp;
+                                性别<input type="text" id="sex" style="width: 90px" readonly="readonly">
+                                民族<input type="text" id="nationality" style="width: 90px" readonly="readonly">
+                                年龄<input type="text" id="age" style="width:90px" readonly="readonly">
+                                <br> <br>
+                                初步诊断<input type="text" id="diagnosisResult" readonly="readonly" style="width:505px">
+                            </div>
+
+                            <div style="display: flex">
+                                <div style="font-size: 1.1rem">
+                                    <img style="width: 70px;height: 70px;margin-left: 60px;"
+                                         th:src="@{/images/icon/prescription.png}">
+                                </div>
+
+
+                            </div>
+
+                            <div>
+                                <div id="prescription" class="prescription-1"></div>
+
+                                <div style="margin: 0 70px 0 60px">
+                                    <div style="display: flex;">
+                                        <div style="display: flex;width: 430px">
+                                            <div>
+                                                医嘱
+                                            </div>
+                                            <div style="margin-left: 10px" id="medicalOrder"></div>
+                                        </div>
+                                        <div style="display: flex;">
+                                            <div>医师</div>
+                                            <div>
+                                                <input type="text" id="doctorName" style="width:80px"
+                                                       readonly="readonly">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <hr>
+                                    <div style="display: flex;">
+                                        <div style="display: flex">
+                                            <div>药费</div>
+                                            <div>
+                                                <input type="text" id="drugCost" style="width:80px" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div style="display: flex;margin-left: 20px">
+                                            <div>检查费</div>
+                                            <div>
+                                                <input type="text" id="examinationCost" style="width:80px"
+                                                       readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div style="margin-left: 170px">
+                                            签字:
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="split split-horizontal tolloperation" id="tolloperation">
+
+                            <div class="CardIdInfor">
+                                卡号<input type="text" style="width: 140px"  id="cardId">
+                                <div class="my-tooltip">
+                                    <img class="png" th:src="@{/images/icon/notice.png}">
+                                    <div class="tooltip">手动输入就诊卡号后，只需点击最右侧搜索按钮，选择收费状态便可查询。读取就诊卡需配合IC读卡器来使用！</div>
+                                </div>
+                                <div class="mybtn1">
+                                    <button class="btn btn-info" onclick="getCardIdInfor()">读取就诊卡</button>
+                                </div>
+
+                                <div style="margin-left: 50px">
+                                    收费状态<select class='tollStatus' data-placeholder=' '>
+
+                                    <option value=""></option>
+
+                                    <option value="0">未收费</option>
+                                       
+                                    <option value="1">已收费</option>
+                                     
+                                </select>
+                                </div>
+                                <div class="mybtn1">
+                                    <button class="btn btn-info" onclick="getMedicalRecord()">
+                                        <img class="png" th:src="@{/images/icon/search.png}">
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="toll_table">
+                                <table id="MedicalRecord"></table>
+                            </div>
+
+
+                            <div style="margin: 70px 0 0 100px">
+                                <div style="display: flex;">
+                                    <div>
+                                        合计：
+                                    </div>
+                                    <div>
+                                        <input type="text" id="total" style="width:90px" readonly="readonly">
+                                    </div>
+                                    <div style="margin-left: 30px">
+                                        付款方式<select class='payType' data-placeholder=' '>
+                                         
+                                        <option value=""></option>
+
+                                        <option value="现金">现金</option>
+                                           
+                                        <option value="支付宝">支付宝</option>
+                                         
+                                    </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="textbox_2" style="display: flex">
+                                <div style="width: 60%">
+                                    <div id="money" style="display: none">
+                                        实付<input type="text" id="payMoney" style="width: 120px"
+                                                 oninput="getChange()">元&emsp;&emsp;&emsp;
+                                        找零<input type="text" id="Change" style="width: 100px;color: red"
+                                                 readonly="readonly">元
+
+                                    </div>
+
+                                    <div id="apay" style="display: none;margin-left: 40%">
+                                        <img style="width: 100px;height: 100px;"
+                                             th:src="@{/images/icon/apay.jpg}">
+                                    </div>
+                                </div>
+                                <div class="mybtn3">
+
+                                    <button class="btn btn-info" onclick="saveTollInfo()">提交信息</button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div>
+    <div th:replace="common/common_js :: js(~{::script})"></div>
+    <script type="text/javascript" th:src="@{/js/jquery.preloader.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/chosen.jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/split.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.jqprint-0.3.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table-zh-CN.js}"></script>
+    <script type="text/javascript" th:src="@{/js/mjs/mjs_outpatientToll.js}"></script>
+    <script type="text/javascript" th:src="@{/js/Print.js}"></script>
+</div>
+</body>
+</html>

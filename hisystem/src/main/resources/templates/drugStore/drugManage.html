@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="common/common_css :: css(~{::link})">
+    </head>
+    <title>药库管理</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chosen.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/mcss/model/component.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/mcss/mcss_drugManage.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/flatpickr.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/preloader.css}">
+</head>
+<body>
+
+<div id="preloader">
+    <div id="preloader-inner"></div>
+</div>
+<div id="wrapper">
+    <div th:replace="common/common_left :: left"></div>
+
+    <div id="content-wrapper" class="d-flex flex-column content-wrapper">
+        <div id="content">
+            <div th:replace="common/common_head :: head"></div>
+
+            <!--正文-->
+            <div>
+                <div class="card shadow mb-4" style="margin-left: 2.5%;height: 818px">
+
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">药库管理</h6>
+                    </div>
+
+                    <div class="card-body">
+                        <div style=" margin-left: 1%;margin-right: 1%">
+                            <div class="drug_search">
+                                <div>
+                                    药品名
+                                    <select class='drugSelect' data-placeholder=' '>
+                                        <option value=""></option>
+
+                                    </select>
+                                </div>
+
+                                <div style="margin-left: 25px">
+                                    剂型
+                                    <select class='drugTypeSelect_search' data-placeholder=' '>
+                                        <option value=""></option>
+
+                                    </select>
+                                </div>
+
+                                <div style="margin-left: 25px">
+                                    是否限制药
+
+                                    <select class='limitStatus_search' data-placeholder=' '>
+                                        <option value=""></option>
+                                        <option value="1">是</option>
+                                        <option value="0">否</option>
+                                    </select>
+                                </div>
+
+                                <div style="margin-left: 25px">
+                                    功效分类
+
+                                    <select class='efficacyClassificationSelect_search' data-placeholder=' '>
+                                        <option value=""></option>
+
+                                    </select>
+                                </div>
+
+                                <div style="margin-left: 25px">
+                                    <button class="btn btn-info" onclick="searchDrug()">
+                                        <img class="png" th:src="@{/images/icon/search.png}">
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <table id="AllDrug"></table>
+                            </div>
+
+                            <!--模态框_修改-->
+                            <div id="mymodal_2" class="mymodal_overlay">
+                                <div class="mymodal_modal modal3">
+                                    <img class="png" th:src="@{/images/icon/change.png}">
+                                    <!--<a class="mymodal_close" href="#">×</a>-->
+                                    <div style="margin: 25px 0 0 50px;font-size: 19px">
+
+                                        <div style="display: flex ; margin-bottom: 30px">
+                                            药品名<input type="text" id="name" style="width: 170px">
+
+                                            <div style="display: flex;margin-left: 70px">
+
+                                                <div>
+                                                    剂型
+                                                </div>
+
+                                                <div style="margin-left: 10px">
+                                                    <select class='drugTypeSelect' data-placeholder=' '>
+                                                        <option value=""></option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        制剂规格<input type="text" id="specification" style="width: 152px">&emsp;&emsp;&emsp;
+                                        制剂单位<input type="text" id="unit" style="width: 100px">
+
+                                        <div style="display: flex;margin-top: 30px">
+
+                                            <div style="display: flex">
+                                                <div>
+                                                    是否限制药
+                                                </div>
+                                                <div style="margin-left: 10px">
+                                                    <select class='limitStatusSelect' data-placeholder=' '>
+                                                        <option value=""></option>
+                                                        <option value="1">是</option>
+                                                        <option value="0">否</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div style="display: flex;margin-left: 20px">
+                                                <div>
+                                                    功效分类
+                                                </div>
+                                                <div style="margin-left: 10px">
+                                                    <select class='efficacyClassificationSelect' data-placeholder=' '>
+                                                        <option value=""></option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div style="display: flex;margin-top:30px">
+                                            <div style="width: 160px">
+                                                批发价<input type="text" id="wholesalePrice" style="width: 80px">
+                                            </div>
+
+                                            <div style="width: 160px;">
+                                                售价<input type="text" id="price" style="width:80px">
+                                            </div>
+
+                                        </div>
+
+                                        <div style="display: flex;margin-top:30px">
+                                            <div style="display: flex;width: 245px">
+                                                <div> 生产日期</div>
+                                                <input class="productionDate" style="width: 145px;height: 33px">
+                                            </div>
+                                            <div style="display: flex;width: 255px">
+                                                <div> 保质日期</div>
+                                                <input class="qualityDate" style="width:145px;height: 33px">
+                                            </div>
+
+                                        </div>
+
+                                        <div style="margin-top: 30px;margin-bottom: 30px">
+                                            生成厂家<input type="text" id="manufacturer" style="width:380px">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a style="text-decoration: none" href="#">
+                                            <button type="button" class="btn btn-primary"
+                                                    href="#">取消
+                                            </button>
+                                        </a>
+                                        <!-- <a style="text-decoration: none" href="#">-->
+                                        <button type="button" class="btn btn-primary"
+                                                onclick="updateDrug()">确认
+                                        </button>
+                                        <!--</a>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--模态框_删除-->
+                            <div id="mymodal_1" class="mymodal_overlay">
+                                <div class="mymodal_modal modal1">
+                                    <img class="png" th:src="@{/images/icon/delete.png}">
+                                    <div class="modal-body">
+                                        请确认您的操作！
+                                        <input type="hidden" id="drugName">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a style="text-decoration: none" href="#">
+                                            <button type="button" class="btn btn-primary"
+                                                    href="#">取消
+                                            </button>
+                                        </a>
+                                        <a style="text-decoration: none" href="#">
+                                            <button type="button" class="btn btn-primary"
+                                                    onclick="deleteDrug()">确认
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div>
+    <div th:replace="common/common_js :: js(~{::script})"></div>
+    <script type="text/javascript" th:src="@{/js/jquery.preloader.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/chosen.jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/flatpickr.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table-zh-CN.js}"></script>
+    <script type="text/javascript" th:src="@{/js/mjs/mjs_drugManage.js}"></script>
+</div>
+</body>
+</html>

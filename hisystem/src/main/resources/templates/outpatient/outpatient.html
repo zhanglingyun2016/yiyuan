@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="common/common_css :: css(~{::link})">
+    </head>
+    <title>门诊就诊</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/mcss/mcss_outpatient.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chosen.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/preloader.css}">
+</head>
+<body>
+
+<div id="preloader">
+    <div id="preloader-inner"></div>
+</div>
+<div id="wrapper">
+    <div th:replace="common/common_left :: left"></div>
+
+    <div id="content-wrapper" class="d-flex flex-column content-wrapper">
+        <div id="content">
+            <div th:replace="common/common_head :: head"></div>
+
+            <!--正文-->
+            <div>
+                <div class="card shadow mb-4" style="margin-left: 2.5%;height: 818px">
+
+                    <div class="card-body">
+                        <div class="outpatient-div">
+                            <div class="split split-horizontal" id="outpatient-one">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">患者基本信息</h6>
+                                </div>
+
+                                <div style="margin-left: 5%">
+                                    <div class="textbox">
+                                        卡号<input type="text" style="width: 110px" id="cardId">
+                                        <div class="cardId-search">
+                                            <button class="btn btn-success" onclick="getCardIdInfor(1)">
+                                                <img class="png" th:src="@{/images/icon/search.png}">
+                                            </button>
+                                        </div>
+                                        <div class="mybtn1">
+                                            <button class="btn btn-info" onclick="getCardIdInfor(0)">读取就诊卡</button>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="textbox_2">
+
+
+                                        <div id="new-img" style=" visibility: hidden">
+                                            <img style="width: 35px;height: 35px;"
+                                                 th:src="@{/images/icon/newPatien.png}" title="请记录新开卡的病人信息">
+                                        </div>
+                                        婚姻<input type="text" id="maritalStatus" style="width: 110px">&emsp;
+                                        职业<input type="text" id="career" style="width:110px">
+                                        <input type="text" id="queueId" hidden="hidden"><!--隐藏队列Id-->
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <div style="display: flex;">
+                                            <div>个人史</div>
+                                            <textarea id="personalHistory"></textarea>
+                                        </div>
+
+                                        <div style="display: flex; margin-top: 30px">
+                                            <div>既往史</div>
+                                            <textarea type="text" id="pastHistory"></textarea>
+                                        </div>
+
+                                        <div style="display: flex;margin-top: 30px">
+                                            <div>家族史</div>
+                                            <textarea type="text" id="familyHistory"></textarea>
+                                        </div>
+
+                                        <div class="mybtn2" id="new-submit">
+                                            <button class="btn btn-info" onclick="changePatientInfor()">提交修改</button>
+                                        </div>
+
+                                        <div style="display: flex;margin: 20px 0 0 17px;">
+                                            <div>主诉</div>
+
+                                            <textarea id="conditionDescr"></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="split split-horizontal" id="outpatient-two">
+                                <div>
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">电子处方</h6>
+                                    </div>
+
+                                    <div style="display: flex">
+                                        <h4 style="font-family: STLiti,serif;color: #2C9FAF">SHOSPITAL</h4>
+
+                                        <h2>门诊处方笺</h2>
+
+                                        <div style="font-size: 15px;margin-left: 26%">
+                                            <div id="nowDate"></div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="textbox_3">
+
+                                        处方号<input type="text" id="prescriptionNum" style="width: 170px"
+                                                  readonly="readonly">
+                                        科室<input type="text" id="department" style="width: 110px" readonly="readonly">&emsp;
+                                        日期<input type="text" id="date" style="width: 133px" readonly="readonly">
+                                        <br> <br>
+                                        姓名<input type="text" id="name" style="width: 110px" readonly="readonly">&emsp;
+                                        性别<input type="text" id="sex" style="width: 90px" readonly="readonly">
+                                        民族<input type="text" id="nationality" style="width: 90px" readonly="readonly">
+                                        年龄<input type="text" id="age" style="width:90px" readonly="readonly">
+                                        <br> <br>
+                                        初步诊断<input type="text" id="diagnosisResult" style="width:505px">
+                                    </div>
+
+                                    <div style="display: flex">
+                                        <div style="font-size: 1.1rem">
+                                            <img style="width: 70px;height: 70px"
+                                                 th:src="@{/images/icon/prescription.png}">
+                                        </div>
+
+
+                                    </div>
+
+                                    <div style="margin: 20px 0 0 185px" id="drugs">
+                                        <ol>
+
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="split split-horizontal" id="outpatient-three">
+                                <div>
+
+                                    <div>
+
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">身体检查</h6>
+                                        </div>
+
+                                        <div style="width: 100%;margin-top: 20px">
+                                            <div style="width: 100px">检查结果:</div>
+                                            <div class="testResult">
+                                                体温<input type="text" id="bodyTemperature" style="width: 70px"
+                                                         readonly="readonly">℃&emsp;
+                                                脉搏<input type="text" id="pulse" style="width: 70px"
+                                                         readonly="readonly">次/分&emsp;
+                                                <button class="btn btn-info mybutton"
+                                                        onclick="getMedicalExamination()">
+                                                    更新
+                                                </button>
+
+                                                <br> <br>
+                                                心率<input type="text" id="heartRate" style="width: 70px"
+                                                         readonly="readonly">次/分&emsp;
+                                                血压<input type="text" id="bloodPressure" style="width: 70px"
+                                                         readonly="readonly">mmHg
+                                            </div>
+
+                                            <br>
+                                            <div style="margin-left: 300px;">
+                                                <button class="btn btn-info mybutton2" onclick="ProcessLater()">稍后处理
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="card-header py-3">
+                                                <h6 class="m-0 font-weight-bold text-primary">处方药</h6>
+                                            </div>
+                                            <!--<div>
+                                                <button class="btn btn-info mybutton2" onclick="selectTemplate()">选择模板
+                                                </button>
+                                            </div>-->
+
+                                            <div style="margin-left: 10px">
+                                                <div style="display: flex;margin-top: 20px">
+                                                    <div>
+                                                        药品:
+                                                    </div>
+                                                    <div style="margin-left: 10px">
+                                                        <select class='drugSelect' data-placeholder=' '>
+                                                            <option value=""></option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <!--规格-->
+                                                <div style="display: flex;">
+                                                    <div>
+                                                        药品规格：
+                                                    </div>
+                                                    <div>
+                                                        <input type="text" id="specification" style="width: 150px"
+                                                               readonly="readonly">
+                                                        <input type="hidden" id="price">
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div style="display: flex">
+                                                    <div>
+                                                        用法：
+                                                    </div>
+                                                    <div>
+                                                        <input type="text" style="width: 70px" id="usage">
+                                                    </div>
+                                                    <div style="margin-left: 10px">
+                                                        <select class='drugMethod' data-placeholder=' '>
+                                                            <option value=""></option>
+                                                            <option value="口服">口服</option>
+                                                            <option value="外用">外用</option>
+                                                        </select>
+                                                    </div>
+                                                    <div style="margin-left: 10px">
+                                                        <select class='drugNum' data-placeholder=' '>
+                                                            <option value=""></option>
+                                                            <option value="每日一次">每日一次</option>
+                                                            <option value="每日两次">每日两次</option>
+                                                            <option value="每日三次">每日三次</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div style="display: flex;">
+                                                    <div style="margin: 25px 0 20px 60px; ">
+                                                        <button class="btn btn-info mybutton" onclick="emptyDrugs()">清空
+                                                        </button>
+                                                    </div>
+                                                    <div style="margin: 25px 0 20px 195px; ">
+                                                        <button class="btn btn-info mybutton" onclick="addDrugs()">添加
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-header py-3">
+                                                <h6 class="m-0 font-weight-bold text-primary">医嘱</h6>
+                                            </div>
+
+                                            <div style="display: flex;margin-top: 20px">
+                                                <div>
+                                                    添加医嘱：
+                                                </div>
+                                                <textarea id="medicalOrder"
+                                                          style="height: 80px;width: 260px" maxlength="15"></textarea>
+                                            </div>
+
+                                            <div style="margin: 25px 0 20px 290px; ">
+                                                <button class="btn btn-info mybutton2" onclick="addMedicalRecord()">门诊完成
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--队列-->
+                        <button class="showbar"></button>
+                        <div class="widget-bar">
+                            <div style="display: flex;">
+                                <h3>患者队列</h3>
+                                <button style="margin-left: 115px;margin-top: 7px" class="btn btn-info" title="刷新"
+                                        onclick="refreshQueue()">
+                                    <i class="fa fa-sync"></i>
+                                </button>
+                            </div>
+
+                            <!--稍后处理的就诊病人-->
+                            <div id="allPatientLater" >
+                                <table id="alloutpatientqueue">
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<div>
+    <div th:replace="common/common_js :: js(~{::script})"></div>
+    <script type="text/javascript" th:src="@{/js/jquery.preloader.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/chosen.jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/split.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table-zh-CN.js}"></script>
+    <script type="text/javascript" th:src="@{/js/mjs/mjs_outpatient.js}"></script>
+    <script type="text/javascript" th:src="@{/js/Print.js}"></script>
+</div>
+</body>
+</html>

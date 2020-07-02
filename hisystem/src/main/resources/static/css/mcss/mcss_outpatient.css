@@ -1,0 +1,266 @@
+.gutter {
+    background-color: #eee;
+
+    background-repeat: no-repeat;
+    background-position: 50%;
+
+    cursor: move;
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+.gutter.gutter-horizontal {
+    background-image: url('grips/vertical.png');
+}
+
+.gutter.gutter-vertical {
+    background-image: url('grips/horizontal.png');
+}
+
+.split {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.gutter.gutter-horizontal {
+    height: 796px;
+    float: left;
+}
+
+.outpatient-div {
+    font-size: 18px;
+    height: 796px;
+    display: flex;
+}
+
+.outpatient-div textarea {
+    width: 330px;
+    height: 66px;
+    margin-left: 10px;
+    border: 1px solid #56A9BA;
+    font-size: 16px;
+}
+
+.textbox {
+    margin-top: 40px;
+    display: flex;
+    font-size: 18px;
+}
+
+.textbox input {
+    text-align: center;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid #56A9BA;
+    margin-left: 1%;
+    color: #000080;
+}
+
+#outpatient-two h2 {
+    margin-top: 15px;
+    font-weight: 600;
+    text-align: center;
+    margin-left: 20%;
+}
+
+.textbox .mybtn1 {
+    margin-left: 6%;
+}
+
+.textbox .mybtn {
+    margin-left: 8%;
+}
+
+.textbox .cardId-search {
+    margin-left: 2%;
+}
+
+
+.textbox_2 {
+    font-size: 18px;
+    margin-top: 30px
+}
+
+.textbox_2 input {
+    text-align: center;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid #56A9BA;
+    margin-left: 1%;
+    color: #000080;
+}
+
+.textbox_3 {
+    font-size: 18px;
+    margin: 30px 0 15px 80px;
+}
+
+.drugMethod {
+    width: 100px;
+}
+
+.drugNum {
+    width: 140px;
+}
+
+input {
+    text-align: center;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid #56A9BA;
+    margin-left: 1%;
+    color: #000080;
+}
+
+.textbox_2 textarea {
+    border: 1px solid #56A9BA;
+    margin-left: 3%;
+    width: 260px;
+    height: 80px;
+    font-size: 16px;
+}
+
+.textbox_2 .mybtn2 {
+    margin: 20px 0 0 235px;
+}
+
+
+.mybutton {
+    width: 58px;
+    font-size: 16px;
+    height: 35px;
+}
+
+.mybutton2 {
+    width: 90px;
+    font-size: 16px;
+    height: 36px;
+}
+
+/*队列侧边栏*/
+.widget-bar {
+    position: fixed;
+    overflow-y: auto;
+    top: 70px;
+    right: -310px;
+    width: 310px;
+    height: 100%;
+    z-index: 999;
+    transition: all 0.3s ease-in-out;
+    background-color: rgba(130, 139, 156, 0.7);
+    /* background-color: whitesmoke;*/
+    color: #FFFFFF;
+}
+
+.widget-bar h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 11px;
+}
+
+.on1 {
+    right: 0;
+}
+
+.on2 {
+    right: 310px !important;
+}
+
+.showbar {
+    position: fixed;
+    right: 0;
+    top: 450px;
+    background-color: #36b9cc;
+    border: 1px solid #36b9cc;
+    transition: all 0.3s ease-in-out;
+    border-radius: 10%;
+    width: 2.3rem;
+    height: 2.3rem;
+    outline: none !important;
+}
+
+.showbar::after {
+    font-weight: 900;
+    content: '\f104';
+    font-family: 'Font Awesome 5 Free';
+    color: #fff;
+}
+
+.showbar.on2::after {
+    content: '\f105';
+    font-family: 'Font Awesome 5 Free';
+    color: #fff;
+}
+
+.alloutpatientqueue {
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.alloutpatientqueue th {
+    width: 40px;
+}
+
+.alloutpatientqueue td {
+    width: 110px;
+    height: 70px;
+}
+/*队列侧边栏*/
+
+
+
+.testResult {
+
+    font-size: 16px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.testResult input {
+    text-align: center;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid #56A9BA;
+    margin-left: 1%;
+    color: #000080;
+}
+
+.conditionDescr {
+    display: flex;
+    margin-top: 25px;
+}
+
+.conditionDescr textarea {
+    width: 605px;
+    height: 85px;
+}
+
+.drugSelect {
+    width: 180px;
+}
+
+.mybutton-print {
+    height: 1.7rem;
+    line-height: 1.5rem;
+    padding: 0 11px;
+    background: rgb(140, 212, 245);
+    border: 1px rgb(140, 212, 245) solid;
+    border-radius: 3px;
+    color: #fff;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 14px;
+    outline: none;
+}
+

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<div th:fragment="left" style="position: fixed">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center">
+            <img class="lowin-brand" th:src="@{/sb-admin-2/img/hospitalLogo.png}" alt="logo">
+            <div class="sidebar-brand-text mx-3" id="hospitalLog">shospital</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" th:href="@{main}">
+                <img class="png" th:src="@{/images/icon/main.png}">
+                <span>&nbsp;首&nbsp;页</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <!-- <div class="sidebar-heading">
+            Interface
+        </div> -->
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item" shiro:hasAnyRoles="admin,register">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#registerId"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <img class="png" th:src="@{/images/icon/register.png}" src="">
+                <span>&nbsp;挂号收费</span>
+            </a>
+            <div id="registerId" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Register:</h6>
+                    <a class="collapse-item" th:href="@{/register}"><span
+                            class="glyphicon glyphicon-leaf"></span>挂号收费</a>
+                    <a class="collapse-item" th:href="@{/registerRecord}">挂号记录</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item" shiro:hasAnyRoles="admin,mdoctor">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#outpatientId"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <img class="png" th:src="@{/images/icon/treatment.png}">
+                <span>&nbsp;门诊管理</span>
+            </a>
+            <div id="outpatientId" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">doctor:</h6>
+                    <a class="collapse-item" th:href="@{/outpatient}">门诊就诊</a>
+                    <!-- <a class="collapse-item" href="@{/medicalRecord}">就诊记录</a>-->
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item" shiro:hasAnyRoles="admin,tollCollector">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#tollCollectorId"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <img class="png" th:src="@{/images/icon/toll.png}">
+                <span>&nbsp;划价收费</span>
+            </a>
+            <div id="tollCollectorId" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">toller:</h6>
+                    <a class="collapse-item" th:href="@{/outpatientToll}">门诊收费</a>
+                    <a class="collapse-item" th:href="@{/examinationToll}">体检收费</a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item" shiro:hasAnyRoles="admin,druggist">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#takingDrugId"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <img class="png" th:src="@{/images/icon/takingDrug.png}">
+                <span>&nbsp;药房取药</span>
+            </a>
+            <div id="takingDrugId" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">takingdrug:</h6>
+                    <a class="collapse-item" th:href="@{/takingdrug}">药房取药</a>
+                    <!--<a class="collapse-item" href="#">Other</a>-->
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item" shiro:hasAnyRoles="admin,technologyDoc">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#technologyId"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <img class="png" th:src="@{/images/icon/technology.png}">
+                <span>&nbsp;体检管理</span>
+            </a>
+            <div id="technologyId" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">drugStore:</h6>
+                    <a class="collapse-item" th:href="@{/medicalExamination}">普通体检</a>
+                </div>
+            </div>
+        </li>
+
+        <!--药库管理-->
+        <li class="nav-item" shiro:hasAnyRoles="admin,drugStoreAdmin">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#storageManageId"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <img class="png" th:src="@{/images/icon/drugStore.png}">
+                <span>&nbsp;药库管理</span>
+            </a>
+            <div id="storageManageId" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">drugStore:</h6>
+                    <a class="collapse-item" th:href="@{/drugManage}">药物管理</a>
+                    <a class="collapse-item" th:href="@{/storageManage}">入库管理</a>
+                    <!--<a class="collapse-item" th:href="@{/#}">出库管理</a>-->
+                    <!--<a class="collapse-item" href="#">Other</a>-->
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item" >
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#userCenterId"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <img class="png" th:src="@{/images/icon/userCenter.png}">
+                <span>&nbsp;用户中心</span>
+            </a>
+            <div id="userCenterId"  class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">userCenter:</h6>
+                    <a class="collapse-item" th:href="@{/toUserinfo}">个人中心</a>
+                    <a class="collapse-item" th:href="@{/accountset}">账号设置</a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item" shiro:hasRole="admin">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#systemId"
+               aria-expanded="true" aria-controls="collapsePages">
+                <img class="png" th:src="@{/images/icon/sys.png}">
+                <span>&nbsp;系统维护</span>
+            </a>
+            <div id="systemId" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">system:</h6>
+                    <a class="collapse-item" th:href="@{/announcement}">公告管理</a>
+                    <a class="collapse-item" th:href="@{/toApply}">角色审核</a>
+                    <!--<a class="collapse-item" href="#">Other</a>-->
+                </div>
+            </div>
+        </li>
+
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <!-- <div class="text-center d-none d-md-inline">
+             <button class="rounded-circle border-0" id="sidebarToggle"></button>
+         </div>-->
+
+    </ul>
+</div>
+</html>

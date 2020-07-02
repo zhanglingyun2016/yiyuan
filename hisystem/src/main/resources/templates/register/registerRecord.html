@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="common/common_css :: css(~{::link})">
+    </head>
+    <title>挂号记录</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chosen.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/mcss/mcss_registerRecord.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/flatpickr.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/preloader.css}">
+</head>
+<body>
+
+<div id="preloader">
+    <div id="preloader-inner"></div>
+</div>
+<div id="wrapper">
+    <div th:replace="common/common_left :: left"></div>
+
+    <div id="content-wrapper" class="d-flex flex-column content-wrapper">
+        <div id="content">
+            <div th:replace="common/common_head :: head"></div>
+
+            <!--正文-->
+            <div>
+                <div class="card shadow mb-4" style="margin-left: 2.5%;height: 818px">
+
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">挂号记录</h6>
+                    </div>
+
+                    <div class="card-body">
+                        <div style=" margin-left: 1%;margin-right: 1%">
+                            <div class="register_search">
+                                <div>
+                                    选择科室
+                                    <select class='registerSearch_1' data-placeholder=' '>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+
+                                <div style="margin-left: 25px">
+                                    挂号类型
+                                    <select class='registerSearch_2' data-placeholder=' '>
+                                        <option value=""></option>
+                                        <option value="普通门诊">普通门诊</option>
+                                        <option value="急诊">急诊</option>
+                                    </select>
+                                </div>
+
+                                <div class="search_time">
+                                    日期
+                                    <input class="startTime" placeholder="开始时间">
+                                    -
+                                    <input class="endTime" placeholder="结束时间">
+                                </div>
+
+                                <div class="registerRecord-search">
+                                    <button class="btn btn-info" onclick="searchRegisterRecord()">
+                                        <img class="png" th:src="@{/images/icon/search.png}">
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <table id="registerRecord"></table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div>
+    <div th:replace="common/common_js :: js(~{::script})"></div>
+    <script type="text/javascript" th:src="@{/js/jquery.preloader.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/chosen.jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/flatpickr.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table-zh-CN.js}"></script>
+    <script type="text/javascript" th:src="@{/js/mjs/mjs_registerRecord.js}"></script>
+</div>
+</body>
+</html>
